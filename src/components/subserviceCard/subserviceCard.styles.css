@@ -1,0 +1,12 @@
+ .subServiceCard{
+    padding: 70px 100px;
+    width: 500px;
+ }
+
+
+
+.spanTag{
+    display: flex!important;
+    justify-content: space-between!important;
+    margin-top: 5px!important;
+}

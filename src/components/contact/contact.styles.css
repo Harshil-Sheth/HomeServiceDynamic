@@ -13,6 +13,9 @@ general
   padding-top: 10px;
   padding-bottom: 20px;
 }
+.fa-envelope{
+  margin-right: 7px;
+}
 .buton {
   white-space: nowrap;
   padding: 10px 22px;
