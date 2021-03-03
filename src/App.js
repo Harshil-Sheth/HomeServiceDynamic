@@ -18,7 +18,7 @@ function App() {
     <Route path='/book' component={BookServicePage} />
     <Route path='/signin' component={SignInPage} />
     <Route path='/signup' component={SignUpPage} />
-    <Route path='/subservices' component={SubServeicePage} />
+    <Route path='/subservices' component={(props) => <SubServeicePage {...props}/>} />
     {/* <Route path='/signin' component={SignInAndSignUpPage} /> */}
       {/* <BookServicePage /> */}
       </Switch>

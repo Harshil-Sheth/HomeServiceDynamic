@@ -7,7 +7,7 @@ import { ArrowForward, ArrowRight } from '../videosection/videosection.styles'
 
 
 
-const Card = ({service_name, service_image, history, linkUrl, match} ) => {
+const Card = ({service_name,service_id, service_image, history, linkUrl, match} ) => {
     
     const scrollToTop = () => {
         window.scrollTo(0, 0)
@@ -28,7 +28,7 @@ const Card = ({service_name, service_image, history, linkUrl, match} ) => {
                 <h4 className="card-title">{service_name.toUpperCase()}</h4>
                 {/* <p className="card-text text-secondary">Hiiiiiii</p> */}
                 {/* <div className="button" onClick={ () => history.push('book')}>Book Now</div> */}
-                <Link onMouseEnter={onHover} onMouseLeave={onHover} onClick={scrollToTop} className="button" to='subservicepage'>View{hover ? <ArrowForward /> : <ArrowRight />}</Link>
+                <Link onMouseEnter={onHover} onMouseLeave={onHover} onClick={scrollToTop} className="button" to={{ pathname: '/subservices',state: service_name  }}>View{hover ? <ArrowForward /> : <ArrowRight />}</Link>
                 {/* `${match.url}${linkUrl}` */}
             </div>
         </div>        

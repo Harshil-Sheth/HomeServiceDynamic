@@ -1,12 +1,17 @@
  .subServiceCard{
-    padding: 70px 100px;
-    width: 500px;
+    padding: 10px 30px;
  }
 
-
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253) !important; 
+}
 
 .spanTag{
     display: flex!important;
     justify-content: space-between!important;
     margin-top: 5px!important;
+}
+.price{
+    font-weight: 800;
+    /* font-weight: bolder; */
 }

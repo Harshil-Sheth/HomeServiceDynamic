@@ -3,9 +3,9 @@ import SubserviceCard from '../subserviceCard/subserviceCard.component'
 import "./subservicelist.styles.css"
 
 export default class SubserveiceList extends Component {
-    constructor(){
-        super();
-
+    constructor(props){
+        super(props);
+    
         this.state = {
             sections: []
         }
@@ -13,19 +13,26 @@ export default class SubserveiceList extends Component {
 
 
     componentDidMount() {
-        const apiUrl = 'http://localhost:4000/api/getCategoryByName/Home Cleaning';
+        // let servicename= this.state.sections.service_name;
+        console.log(this.props.location.state);
+        var val= this.props.location.state
+        const apiUrl = 'http://localhost:4000/api/getCategoryByName/'+val;
+
         fetch(apiUrl)
           .then(response => response.json())
           .then(data => this.setState({ sections : data}));
       }
     render() {
         return (
-            <div className='cards'>
-            <div className="container-fluid d-flex cardlist">
+            <div>
+            <div className="container-fluid">
+            <div className="row nthcard">
                 {this.state.sections.map(({ subservice_id, ...otherSectionProps}) => (
-                <div key={subservice_id}  className="d-flex cardlist">
+                <div key={subservice_id}>
                 <SubserviceCard  key={subservice_id} {...otherSectionProps}/>
                 </div>))}
+                </div>
+
                 {/* // <SubserviceCard /> */}
             </div>
             </div>

@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import "./subserviceCard.styles.css";
+import MyVerticallyCenteredModal from '../subServiceModal/subServiceModel.component'
 
 const useStyles = makeStyles({
   root: {
@@ -15,12 +16,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SubserviceCard({sub_servicename,long_description,price,time_duration,image}) {
+export default function SubserviceCard({sub_servicename,short_description,price,time_duration,image, long_description,service_name}) {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
+
+
 
   return (<div className='subServiceCard'>
-    <Card className={classes.root}>
-      <CardActionArea>
+    <Card className={classes.root, 'card'}>
+      <CardActionArea onClick={() => setModalShow(true)}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -33,10 +37,10 @@ export default function SubserviceCard({sub_servicename,long_description,price,t
           {sub_servicename}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          {long_description}
+          {short_description}
           </Typography>
           <Typography className="spanTag" variant="body2" color="textSecondary" display="inline">
-            <span>{price}</span><span>{time_duration}</span>
+            <span className='price'>₹{price}</span><span>{time_duration}</span>
           </Typography>
           
         </CardContent>
@@ -45,9 +49,16 @@ export default function SubserviceCard({sub_servicename,long_description,price,t
         <Button size="small" color="primary">
           Add to Cart
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => setModalShow(true)}>
           View More
         </Button>
+        <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        long_description={long_description}
+        sub_servicename={sub_servicename}
+        service_name={service_name}
+      />
       </CardActions>
     </Card>
     </div>
