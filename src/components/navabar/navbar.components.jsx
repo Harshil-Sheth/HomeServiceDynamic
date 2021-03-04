@@ -3,10 +3,13 @@ import { FaBars } from 'react-icons/fa'
 import {Nav, NavLogo, NavbarContainer, MobileIcon, NavItem, NavMenu, NavLinks, NavBtn, NavBtnLink} from "./navbar.styles"
 import image from './crown.svg'
 import { withRouter } from 'react-router-dom';
-
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { animateScroll as scroll } from 'react-scroll';
+import MyVerticallyCenteredModal from '../subServiceModal/subServiceModel.component'
+
 
 const Navbar = ( {toggle,history} ) => {
+    const [modalShow, setModalShow] = React.useState(false);
 
     // const [scrollNav, setscrollNav] = useState(false)
 
@@ -100,6 +103,14 @@ const Navbar = ( {toggle,history} ) => {
                     </NavMenu>
                     <NavBtn>
                         <NavBtnLink to='signin' onClick={toggleSignIn}>Sign In</NavBtnLink>
+                    <ShoppingCartOutlinedIcon 
+                    style={{ color: "#ffe484", marginLeft: "20px"}}
+                    onClick={() => setModalShow(true)}
+                    />
+                    <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
                     </NavBtn>
                 </NavbarContainer>
             </Nav>
