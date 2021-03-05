@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SubserviceCard from '../subserviceCard/subserviceCard.component'
-import "./subservicelist.styles.css"
 
 export default class SubserveiceList extends Component {
     constructor(props){
@@ -29,7 +28,7 @@ export default class SubserveiceList extends Component {
             <div className="row nthcard">
                 {this.state.sections.map(({ subservice_id, ...otherSectionProps}) => (
                 <div key={subservice_id}>
-                <SubserviceCard  key={subservice_id} {...otherSectionProps}/>
+                <SubserviceCard  key={subservice_id} subserviceId={subservice_id} {...otherSectionProps}/>
                 </div>))}
                 </div>
 

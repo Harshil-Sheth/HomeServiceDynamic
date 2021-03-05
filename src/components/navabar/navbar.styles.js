@@ -162,3 +162,14 @@ export const NavBtnLink = styled(LinkR)`
         
     }
 `
+export const Cart = styled.div`
+    color: #ffe484;
+    margin-left: 20px;
+    cursor: pointer;
+    
+    }
+  `
+  // &:hover {
+    //   color: #494949;
+    //   background: #ffffff;
+    //   border-color: #494949;
