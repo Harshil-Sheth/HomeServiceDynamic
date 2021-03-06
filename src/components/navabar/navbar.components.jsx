@@ -7,6 +7,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { animateScroll as scroll } from 'react-scroll';
 import MyVerticallyCenteredModal from '../subServiceModal/subServiceModel.component'
 import CartModal from '../cart-modal/cart-modal.component';
+import AccountDropDown from '../account-dropdown/account-dropdown.components';
 
 
 // function viewcart(customer_id){
@@ -119,6 +120,7 @@ const Navbar = ( {toggle,history} ) => {
                             offset={-55}
                             >Contact</NavLinks>
                         </NavItem>
+                        <AccountDropDown />
                         {/* <NavItem>
                             <NavLinks to='signup'>Sign Up</NavLinks>
                         </NavItem> */}

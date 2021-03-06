@@ -6,6 +6,7 @@ import BookServicePage from './views/BookServicePage/BookServicePage';
 import SignInPage from './views/sign-in-sign-up-page/sign-in.component';
 import SignUpPage from './views/sign-in-sign-up-page/sign-up.component';
 import SubServeicePage from './views/subServicePage/subServicePage'
+import Profile from './components/porfile/profile.component';
 // import SubserveiceList from './components/subserviceList/subservicelist.component';
 // import SignInAndSignUpPage from './views/sign-in-sign-up-page/sign-in-sign-up.components';
 
@@ -18,6 +19,7 @@ function App() {
     <Route path='/book' component={BookServicePage} />
     <Route path='/signin' component={SignInPage} />
     <Route path='/signup' component={SignUpPage} />
+    <Route path='/profile' component={Profile} />
     <Route path='/subservices' component={(props) => <SubServeicePage {...props}/>} />
     {/* <Route path='/signin' component={SignInAndSignUpPage} /> */}
       {/* <BookServicePage /> */}

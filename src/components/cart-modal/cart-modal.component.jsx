@@ -45,14 +45,15 @@ componentDidMount() {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {console.log("cartid"+this.state.cart.cart_id)}
-         {this.state.cart.cart_id}
+         {/* {this.state.cart.cart_id} */}
+         HIII
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {this.state.cart.map(({ cart_id, ...otherCartProps}) => (
+        {/* {this.state.cart.map(({ cart_id, ...otherCartProps}) => ( */}
                 
-        <CartCard key={cart_id}/>
-          ))} 
+        <CartCard />
+          {/* ))}  */}
 
         </Modal.Body>
         <Modal.Footer>
