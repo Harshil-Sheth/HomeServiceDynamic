@@ -35,24 +35,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CartCard({subservice_name}) {
+export default function CartCard({cart_id,cartid,sub_servicename,subservice_id, price, time_duration}) {
+ function removecart(event) {
+   alert(subservice_id)
+  // var requestOptions = {
+  //   method: 'DELETE',
+  //   redirect: 'follow'
+  // };
+  
+  // fetch("http://localhost:4000/api/RemoveFromCart/"+cart_id, requestOptions)
+  //   .then(response => response.json())
+  //   .then(result => {console.log(result)
+  //   })
+  //   .catch(error => console.log('error', error));
+ }
+  console.log(cartid)
+  
   const classes = useStyles();
   const theme = useTheme();
-
+ var res=[];
   return (
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
+         
           <Typography component="h5" variant="h5">
-          {subservice_name}
+          {sub_servicename}
           </Typography>
           <Typography variant="h6" color="textSecondary">
-          ₹399
+          {price}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Duration: 3Hours
+            Duration: {time_duration}
           </Typography>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained"  color="secondary" onClick={(e)=>removecart()}>
   Remove
 </Button>
         </CardContent>
