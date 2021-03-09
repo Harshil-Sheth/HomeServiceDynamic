@@ -3,16 +3,17 @@ import './profile.styles.css'
 
 const Profile = () => {
 	
-	const[details,setdetails]=useState([]);
-	const[firstname,setfirstname]=useState();
-	const[lastname,setlastname]=useState();
-	const[gender,setgender]=useState();
-	const[email,setemail]=useState();
-	const[mno,setmno]=useState();
-	const[address,setaddress]=useState();
-	const[area,setarea]=useState();
-	const[city,setcity]=useState();
-	const[image,setimage]=useState();
+	const[details,setdetails]=useState([{
+		firstname:"",
+		lastname:"",
+		gender:"",
+		mobile_no:"",
+		email:"",
+		address:"",
+		area:"",
+		city:""
+	}]);
+	
 	
 	useEffect(()=>{
 		// var urlencoded = new URLSearchParams();
@@ -25,39 +26,31 @@ const Profile = () => {
 		
 		fetch("http://localhost:4000/api/ViewCustomer/"+id, requestOptions)
 		.then(response => response.json())
-		.then(data => setdetails(data))
-		.then(details.map(({firstname})=>setfirstname(firstname)))
-		.then(details.map(({lastname})=>setlastname(lastname)))
-		.then(details.map(({gender})=>setgender(gender)))
-		.then(details.map(({mobile_no})=>setmno(mobile_no)))
-		.then(details.map(({email})=>setemail(email)))
-		.then(details.map(({address})=>setaddress(address)))
-		.then(details.map(({area})=>setarea(area)))
-		.then(details.map(({city})=>setcity(city)))
-		.then(details.map(({image})=>setimage(image)))
+		.then(data => setdetails(data[0]))
 		.catch(error => console.log('error', error));
-		{console.log(firstname)}	
 		
-	
+		
 	},[])
 	
 	
+
+	
 	function handleSubmit(event){
-		alert(firstname+lastname+gender+mno+email+address+area+city)
+		
 		var myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-			var urlencoded = new URLSearchParams();
-			urlencoded.append("firstname", firstname);
-			urlencoded.append("lastname", lastname);
-			urlencoded.append("gender", gender);
-			urlencoded.append("mobile_no", mno);
-			urlencoded.append("email", email);
-			urlencoded.append("address", address);
+		myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+		
+		var urlencoded = new URLSearchParams();
+		urlencoded.append("firstname", details.firstname);
+		urlencoded.append("lastname", details.lastname);
+			urlencoded.append("gender", details.gender);
+			urlencoded.append("mobile_no", details.mobile_no);
+			urlencoded.append("email", details.email);
+			urlencoded.append("address", details.address);
 			urlencoded.append("image", "abc.jpg");
-			urlencoded.append("area", area);
-			urlencoded.append("city", city);
-
+			urlencoded.append("area", details.area);
+			urlencoded.append("city", details.city);
+			
 			var requestOptions = {
 			method: 'PUT',
 			headers: myHeaders,
@@ -70,6 +63,13 @@ const Profile = () => {
 			.then(result => console.log(result))
 			.catch(error => console.log('error', error));
 	}
+	function handleChange(evt) {
+		const value = evt.target.value;
+		setdetails({
+		  ...details,
+		  [evt.target.name]: value
+		});
+	  }
     return (
 		<div className='profilePage'>
                 <div className="container">
@@ -82,16 +82,16 @@ const Profile = () => {
 				                            <div className="user-avatar">
 					                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" />
 				                            </div>
-				                            <h5 className="user-name">{details.map(({firstname,lastname})=>firstname+' '+lastname)}</h5>
-				                            <h6 className="user-mobile_no">{details.map(({mobile_no})=>mobile_no)}</h6>
-				                            <h6 className="user-email">{details.map(({email})=>email)}</h6>
+				                            <h5 className="user-name">{details.firstname} {details.lastname}</h5>
+				                            <h6 className="user-mobile_no">{details.mobile_no}</h6>
+				                            <h6 className="user-email">{details.email}</h6>
 			                            </div>
-			                            {/* <div className="about">
+			                            <div className="about">
 				                            <h5>Address</h5>
-				                            <p>Address Line: {details.map(({address})=>address)}</p>
-				                            <p>Area :{details.map(({area})=>area)}</p>
-				                            <p>City :{details.map(({city})=>city)}</p>
-			                            </div> */}
+				                            <p>Address :- {details.address}</p>
+				                            <p>Area :- {details.area}</p>
+				                            <p>City :- {details.city}</p>
+			                            </div>
 		                            </div>
 	                            </div>
                             </div>
@@ -108,31 +108,31 @@ const Profile = () => {
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 					                            <label htmlFor="firstName">First Name</label>
-					                            <input type="text" name='firstname' defaultValue={details.map(({firstname})=>firstname)}  onChange={e=>setfirstname(e.target.value)}  className="form-control" id="firstName" placeholder="Enter First Name" />
+					                            <input type="text" name='firstname' defaultValue={details.firstname} onChange={handleChange}  className="form-control" id="firstName" placeholder="Enter First Name" />
 				                            </div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 					                            <label htmlFor="lastName">Last Name</label>
-					                            <input type="text" name='lastname' defaultValue={details.map(({lastname})=>lastname)} onChange={e=>setlastname(e.target.value)} className="form-control" id="lastName" placeholder="Enter Last Name" />
+					                            <input type="text" name='lastname' defaultValue={details.lastname} onChange={handleChange} className="form-control" id="lastName" placeholder="Enter Last Name" />
 				                            </div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 					                            <label htmlFor="gender">Gender</label>
-					                            <input type="text" name='gender' defaultValue={details.map(({gender})=>gender)}  onChange={e=>setgender(e.target.value)} className="form-control" id="gender" placeholder="Enter Gender" />
+					                            <input type="text" name='gender' defaultValue={details.gender} onChange={handleChange}  className="form-control" id="gender" placeholder="Enter Gender" />
 				                            </div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 					                            <label htmlFor="email">Email</label>
-					                            <input type="email" name='email' defaultValue={details.map(({email})=>email)} onChange={e=>setemail(e.target.value)} className="form-control" id="email" placeholder="Enter Email ID" />
+					                            <input type="email" name='email' defaultValue={details.email} onChange={handleChange}  className="form-control" id="email" placeholder="Enter Email ID" />
 				                            </div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 					                            <label htmlFor="phone">Mobile Number</label>
-					                            <input type="text" name='mobile_no' defaultValue={details.map(({mobile_no})=>mobile_no)} onChange={e=>setmno(e.target.value)} className="form-control" id="mobile" placeholder="Enter Mobile Number" />
+					                            <input type="text" name='mobile_no' defaultValue={details.mobile_no} onChange={handleChange}  className="form-control" id="mobile" placeholder="Enter Mobile Number" />
 				                            </div>
 			                            </div>
 		                            </div>
@@ -143,19 +143,19 @@ const Profile = () => {
 		                            	<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				                            <div className="form-group">
 				                            	<label htmlFor="Street">Address Line</label>
-				                            	<input type="name" name='address' defaultValue={details.map(({address})=>address)} onChange={e=>setaddress(e.target.value)} className="form-control" id="Street" placeholder="Enter Address" />
+				                            	<input type="name" name='address' defaultValue={details.address} onChange={handleChange}  className="form-control" id="Street" placeholder="Enter Address" />
 				                            </div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 			                            	<div className="form-group">
 			                            		<label htmlFor="area">Area</label>
-			                            		<input type="text" name='area' defaultValue={details.map(({area})=>area)} onChange={e=>setarea(e.target.value)} className="form-control" id="sTate" placeholder="Enter Area" />
+			                            		<input type="text" name='area' defaultValue={details.area} onChange={handleChange}  className="form-control" id="sTate" placeholder="Enter Area" />
 			                            	</div>
 			                            </div>
 			                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 			                            	<div className="form-group">
 			                            		<label htmlFor="ciTy">City</label>
-			                            		<input type="name" name='city' defaultValue={details.map(({city})=>city)} onChange={e=>setcity(e.target.value)} className="form-control" id="ciTy" placeholder="Enter City" />
+			                            		<input type="name" name='city' defaultValue={details.city} onChange={handleChange}  className="form-control" id="ciTy" placeholder="Enter City" />
 			                            	</div>
 			                            </div>
 		                            </div>

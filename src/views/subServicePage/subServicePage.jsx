@@ -13,7 +13,7 @@ class SubServicePage extends Component {
         return(
         <div className='SubServicePage'>
             <Navbar />
-            <SubserveiceList {...this.props}/>
+            <SubserveiceList {...this.props} />
             <Footer />
             </div>
             )  }

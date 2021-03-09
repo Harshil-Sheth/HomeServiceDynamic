@@ -47,7 +47,8 @@ export default function SubserviceCard({sub_servicename,short_description,price,
 
 console.log(subserviceId)
 
-  return (<div className='subServiceCard'>
+  return (
+  <div className='subServiceCard'>
     <Card className={classes.root, 'card'}>
       <CardActionArea onClick={() => setModalShow(true)}>
         <CardMedia

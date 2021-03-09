@@ -32,14 +32,17 @@
 }
 .account-settings .about {
     margin: 2rem 0 0 0;
-    /* text-align: center; */
+    text-align: center;
 }
 .account-settings .about h5 {
-    margin: 0 0 15px 0;
+    /* margin: 0 0 15px 0; */
     color: #007ae1;
 }
 .account-settings .about p {
     font-size: 0.825rem;
+    margin-bottom: 0;
+    /* text-align: left!important;
+    margin-left: 40px; */
 }
 .form-control {
     border: 1px solid #cfd1d8;

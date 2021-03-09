@@ -54,7 +54,7 @@ componentDidMount() {
          
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="container-fluid d-flex row nthcard">
          
         {this.state.cart.map(({ cart_id, ...otherCartProps}) => (
             

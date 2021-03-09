@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import './cart-card.styles.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,17 +38,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CartCard({cart_id,cartid,sub_servicename,subservice_id, price, time_duration}) {
  function removecart(event) {
-   alert(subservice_id)
-  // var requestOptions = {
-  //   method: 'DELETE',
-  //   redirect: 'follow'
-  // };
+   
+  var requestOptions = {
+    method: 'DELETE',
+    redirect: 'follow'
+  };
   
-  // fetch("http://localhost:4000/api/RemoveFromCart/"+cart_id, requestOptions)
-  //   .then(response => response.json())
-  //   .then(result => {console.log(result)
-  //   })
-  //   .catch(error => console.log('error', error));
+  fetch("http://localhost:4000/api/RemoveFromCart/"+cart_id, requestOptions)
+    .then(response => response.json())
+    .then(result => {console.log(result)
+    })
+    .catch(error => console.log('error', error));
  }
   console.log(cartid)
   
@@ -55,7 +56,8 @@ export default function CartCard({cart_id,cartid,sub_servicename,subservice_id, 
   const theme = useTheme();
  var res=[];
   return (
-    <Card className={classes.root}>
+
+    <Card className={classes.root, 'col-md-6', 'cartCard'}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
          
@@ -85,10 +87,11 @@ export default function CartCard({cart_id,cartid,sub_servicename,subservice_id, 
         </div> */}
       </div>
       <CardMedia
-        className={classes.cover}
+        className={classes.cover, 'cartImage'}
         image="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
         title="Live from space album cover"
       />
     </Card>
+
   );
 }

@@ -1,6 +1,17 @@
- .subServiceCard{
-    padding: 80px 30px!important;
+.orderCard{
+    padding: 10px 0;
+    width: 345px;
  }
+ .list{
+     justify-content: center;
+ }
+ .header{
+     margin-top: 100px;
+     /* margin-left: 100px; */
+     font-size: xx-large;
+     text-align: center;
+ }
+ .card{margin: 40px 40px;}
 
 .card:hover{
     box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253) !important; 
