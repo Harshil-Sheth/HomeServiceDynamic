@@ -10,25 +10,6 @@ import CartModal from '../cart-modal/cart-modal.component';
 import AccountDropDown from '../account-dropdown/account-dropdown.components';
 
 
-// function viewcart(customer_id){
-//     var myHeaders = new Headers();
-// myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-// var urlencoded = new URLSearchParams();
-// var requestOptions = {
-//   method: 'GET',
-//   headers: myHeaders,
-//   redirect: 'follow'
-// };
-
-// fetch("http://localhost:4000/api/ViewFromCart/"+customer_id, requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-// }
-
-
-
 const Navbar = ( {toggle,history} ) => {
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -129,7 +110,6 @@ const Navbar = ( {toggle,history} ) => {
                         <NavBtnLink to='signin' onClick={toggleSignIn}>Sign In</NavBtnLink>
                         <Cart >
                     <ShoppingCartOutlinedIcon 
-                    style={{ }}
                     onClick={() => setModalShow(true)}
                     />
                     <CartModal

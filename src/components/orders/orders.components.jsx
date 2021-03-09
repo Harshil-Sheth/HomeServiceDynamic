@@ -1,5 +1,6 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
+import FeedBackModal from '../feedback-modal/feedback-modal.components';
 import "./orders.styles.css"
 
 
@@ -12,9 +13,13 @@ export default class Orders extends Component {
         super(props);
 
         this.state = {
-            orders: []
+            orders: [],
+            modalShow : false
         }
     }
+
+   
+
     componentDidMount(){
         var requestOptions = {
             method: 'GET',
@@ -26,13 +31,17 @@ export default class Orders extends Component {
             .then(data => this.setState({ orders : data}))
             .catch(error => console.log('error', error));
     }
+
+
+
+
     render() {
         return (
             <div >
                  <div className='header'>
                      Your Orders
                      </div>
-                     <div className='container-fluid, row nthcard, list'>
+                     <div className='container-fluid, row nthcard, lissst'>
                 {this.state.orders.map(({ placeorder_id,sub_servicename,price,time_duration,order_status}) => (
                <div key={placeorder_id} className='orderCard'>
                <Card key={placeorder_id}  className= 'card'>
@@ -59,6 +68,12 @@ export default class Orders extends Component {
                    <Button size="small" className="baton">
                      Status - {order_status}
                    </Button>
+                   <Button size="small" className="baton" onClick={() => this.setState({ modalShow: true })}>
+                     Feedback
+                   </Button>
+                   <FeedBackModal 
+                    show={this.state.modalShow}
+                    onHide={() => this.setState({ modalShow: false })}/>
                  </CardActions>
                </Card>
                </div>
