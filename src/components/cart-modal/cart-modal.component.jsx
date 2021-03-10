@@ -8,15 +8,19 @@ export default class CartModal extends Component {
     super();
 
     this.state = {
-        cart: []
-     
+        cart: [],
+        subId:[]
     }
 } 
-
-componentDidMount() {
-  
-  this.refreshlist();
-    
+subserviceKIID=[];
+AddId(){
+  this.state.cart.map(({subservice_id})=>{
+  if (this.subserviceKIID.indexOf(subservice_id) === -1) 
+    this.subserviceKIID.push(subservice_id)
+    // console.log(this.subserviceKIID)
+  })}
+  componentDidMount() {
+    this.refreshlist();
   }
   refreshlist(){
     var customer_id = '1';
@@ -26,22 +30,29 @@ componentDidMount() {
   };
   
   fetch("http://localhost:4000/api/ViewFromCart/"+customer_id, requestOptions)
-    .then(response => response.json())
-    .then(result =>this.setState({cart: result}))
-    .catch(error => console.log('error', error));
+  .then(response => response.json())
+    .then(result =>{this.setState({cart: result})
   }
-  componentDidUpdate(){
-    this.refreshlist();
+  )
+  .catch(error => console.log('error', error));
+
+    
+  this.AddId()   
+}
+componentDidUpdate(){
+  this.refreshlist(); 
+  this.AddId()   
   }
  
   render() {
     
     
-   
+    
     return (
 
       <div>
                 <Modal
+              
         {...this.props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -57,7 +68,7 @@ componentDidMount() {
         <Modal.Body className="container-fluid d-flex row nthcard">
          
         {this.state.cart.map(({ cart_id, ...otherCartProps}) => (
-            
+           
         <CartCard key={cart_id} {...otherCartProps} cart_id={cart_id} />
            ))}  
 

@@ -4,7 +4,8 @@
  }
  .lissst{
      justify-content: center;
-     margin:  auto  10px;
+     margin-left: 15px!important;
+     margin-right: 15px!important;
  }
  .header{
      margin-top: 100px;

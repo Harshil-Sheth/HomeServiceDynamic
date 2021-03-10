@@ -1,6 +1,5 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
-import FeedBackModal from '../feedback-modal/feedback-modal.components';
+import OrderCard from './order-card.components';
 import "./orders.styles.css"
 
 
@@ -42,40 +41,9 @@ export default class Orders extends Component {
                      Your Orders
                      </div>
                      <div className='container-fluid, row nthcard, lissst'>
-                {this.state.orders.map(({ placeorder_id,sub_servicename,price,time_duration,order_status}) => (
+                {this.state.orders.map(({ placeorder_id, ...otherOrderProps}) => (
                <div key={placeorder_id} className='orderCard'>
-               <Card key={placeorder_id}  className= 'card'>
-                 <CardActionArea>
-                   {/* <CardMedia
-                     component="img"
-                     alt="Contemplative Reptile"
-                     height="140"
-                     image={image}
-                     title="Contemplative Reptile"
-                   /> */}
-                   <CardContent>
-                     <Typography  gutterBottom variant="h5" component="h2">
-                     {sub_servicename}
-                     </Typography>
-                     
-                     <Typography className="spanTag" variant="body2" color="textSecondary" display="inline">
-                       <span className='price'>₹{price}</span><span>Duration: {time_duration}</span>
-                     </Typography>
-                     
-                   </CardContent>
-                 </CardActionArea>
-                 <CardActions className="baton">
-                   <Button size="small" className="baton">
-                     Status - {order_status}
-                   </Button>
-                   <Button size="small" className="baton" onClick={() => this.setState({ modalShow: true })}>
-                     Feedback
-                   </Button>
-                   <FeedBackModal 
-                    show={this.state.modalShow}
-                    onHide={() => this.setState({ modalShow: false })}/>
-                 </CardActions>
-               </Card>
+                 <OrderCard key={placeorder_id} {...otherOrderProps}/>
                </div>
                  ))}
                  </div>

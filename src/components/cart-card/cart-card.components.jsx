@@ -50,7 +50,7 @@ export default function CartCard({cart_id,cartid,sub_servicename,subservice_id, 
     })
     .catch(error => console.log('error', error));
  }
-  console.log(cartid)
+  // console.log(cartid)
   
   const classes = useStyles();
   const theme = useTheme();
