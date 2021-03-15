@@ -25,6 +25,9 @@ export default function AccountDropDown() {
   function redirectToOrders(){
       history.push('/orders');
   }
+  function redirectToOrders(){
+      history.push('/changepassword');
+  }
   return (
     <div>
       <Button className='dropButton' aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
@@ -41,7 +44,7 @@ export default function AccountDropDown() {
       >
         <MenuItem onClick={handleClose,redirectToProfile}>Profile</MenuItem>
         <MenuItem onClick={handleClose,redirectToOrders}>Order</MenuItem>
-        <MenuItem onClick={handleClose}>Update Password</MenuItem>
+        <MenuItem onClick={handleClose,redirectToOrders}>Update Password</MenuItem>
       </Menu>
     </div>
   );
